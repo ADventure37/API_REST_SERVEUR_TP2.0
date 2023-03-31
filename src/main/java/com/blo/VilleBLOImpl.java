@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
 @Service
 public class VilleBLOImpl implements VilleBLO{
 
@@ -13,15 +14,33 @@ public class VilleBLOImpl implements VilleBLO{
     private VilleDAO villeDAO;
 
     @Override
-    public String getInfoVille(String codePostal) {
-        ArrayList<Ville> listVille = new ArrayList<>();
-        listVille = villeDAO.recupererVilles();//villeDAO.findAllVilles();
-        String info = "Aucune ville ne correspond à ce code postal!!";
-        for(Ville ville: listVille){
-            if(ville.getCodePostal().equals(codePostal)){
-                info = ville.getInfo();
-            }
-        }
-        return info;
+    public ArrayList<Ville> getVillesCodeP(String codePostal) {
+        return villeDAO.recupererVillesCodeP(codePostal);
+    }
+    @Override
+    public ArrayList<Ville> getVillesCodeC(String codeCommune) {
+        return villeDAO.recupererVillesCodeC(codeCommune);
+    }
+    @Override
+    public ArrayList<Ville> getVillesNom(String nom) {
+        return villeDAO.recupererVillesNom(nom);
+    }
+
+    @Override
+    public ArrayList<Ville> getVilles() {
+        return villeDAO.recupererVilles();
+    }
+
+    @Override
+    public void deleteVille(String codeCommune){
+        villeDAO.deleteVille(codeCommune);
+    }
+    @Override
+    public void insertVille(Ville ville){
+        villeDAO.insertVille(ville);
+    }
+    @Override
+    public void putVille(Ville ville){
+        villeDAO.updateVille(ville);
     }
 }
