@@ -18,6 +18,7 @@ public class VilleController {
     public ArrayList<String> getAll(){
         ArrayList<Ville> villes = villeBLOService.getVilles();
         ArrayList<String> infos = new ArrayList<>();
+        System.out.println(villes.size());
         for(Ville v: villes){
             infos.add(v.getInfo());
         }

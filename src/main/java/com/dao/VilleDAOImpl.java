@@ -132,6 +132,8 @@ public class VilleDAOImpl implements VilleDAO{
                 ville.setNom(resultat.getString("Nom_commune"));
                 ville.setCodePostal(resultat.getString("Code_postal"));
                 ville.setLigne(resultat.getString("Ligne_5"));
+                ville.setLatitude(resultat.getDouble("Latitude"));
+                ville.setLongitude(resultat.getDouble("Longitude"));
                 villes.add(ville);
             }
 
@@ -172,6 +174,8 @@ public class VilleDAOImpl implements VilleDAO{
                 ville.setNom(resultat.getString("Nom_commune"));
                 ville.setCodePostal(resultat.getString("Code_postal"));
                 ville.setLigne(resultat.getString("Ligne_5"));
+                ville.setLatitude(resultat.getDouble("Latitude"));
+                ville.setLongitude(resultat.getDouble("Longitude"));
                 villes.add(ville);
             }
         } catch (SQLException e) {
@@ -187,7 +191,6 @@ public class VilleDAOImpl implements VilleDAO{
             } catch (SQLException ignore) {
             }
         }
-
         return villes;
     }
     public void deleteVille(String codeCommune) {
@@ -226,7 +229,7 @@ public class VilleDAOImpl implements VilleDAO{
 
         try {
             PreparedStatement preparedStatement = connexion.prepareStatement(
-                    "UPDATE ville_france set Nom_commune =?, Code_Postal=?, Libelle_acheminement=?) Where Code_commune_INSEE = ?;");
+                    "UPDATE ville_france set Nom_commune =?, Code_Postal=?, Libelle_acheminement=? Where Code_commune_INSEE = ?;");
             preparedStatement.setString(1,ville.getNom() );
             preparedStatement.setString(2, ville.getCodePostal());
             preparedStatement.setString(3, ville.getNom());

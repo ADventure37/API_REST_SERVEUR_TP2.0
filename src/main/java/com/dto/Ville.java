@@ -5,6 +5,8 @@ public class Ville {
     private String nom;
     private String codePostal;
     private String ligne;
+    private double latitude;
+    private double longitude;
 
     public Ville(){
         this.setCodeCommune(null);
@@ -13,9 +15,6 @@ public class Ville {
         this.setCodePostal(null);
     }
 
-    public String getInfo(){
-        return "Nom : "+ this.getNom() + " Code Postal : " +this.getCodePostal();
-    }
     public String getNom() {
         return nom;
     }
@@ -48,9 +47,24 @@ public class Ville {
         this.codeCommune = codeCommune;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
 
-    public String info(){
-        return "Code de la commune: " + this.getCodeCommune() + " ,Nom: " + this.getNom() + " ,Code postal: "
-                + this.getCodePostal();
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getInfo(){
+        return this.getCodeCommune() + "," + this.getNom() + ","
+                + this.getCodePostal() + "," + this.getLatitude() + "," + this.getLongitude();
     }
 }
