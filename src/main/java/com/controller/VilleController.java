@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.fasterxml.jackson.core.io.NumberInput.parseDouble;
+
 @RestController
 public class VilleController {
     @Autowired
@@ -18,7 +20,6 @@ public class VilleController {
     public ArrayList<String> getAll(){
         ArrayList<Ville> villes = villeBLOService.getVilles();
         ArrayList<String> infos = new ArrayList<>();
-        System.out.println(villes.size());
         for(Ville v: villes){
             infos.add(v.getInfo());
         }
@@ -66,5 +67,21 @@ public class VilleController {
     @DeleteMapping(value="/ville/{codeCommune}")
     public void deleteVille(@RequestParam (value="codeCommune") String codeCommune){
         villeBLOService.deleteVille(codeCommune);
+    }
+
+    @PutMapping(value="/ville/{codeCommune}")
+    public void updateVille(@PathVariable (value="codeCommune") String codeCommune,
+                            @RequestParam (value="nom") String nom,
+                            @RequestParam (value="codePostal") String codePostal,
+                            @RequestParam (value="latitude") String latitude,
+                            @RequestParam (value="longitude") String longitude
+                            ){
+        Ville ville = new Ville();
+        ville.setCodeCommune(codeCommune);
+        ville.setNom(nom);
+        ville.setCodePostal(codePostal);
+        ville.setLatitude(parseDouble(latitude));
+        ville.setLongitude(parseDouble(longitude));
+        villeBLOService.putVille(ville);
     }
 }

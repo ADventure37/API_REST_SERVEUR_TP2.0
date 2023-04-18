@@ -24,7 +24,6 @@ public class VilleDAOImpl implements VilleDAO{
         }
     }
     public ArrayList<Ville> findAllVilles(){
-        System.out.println("findAllVilles");
         ArrayList<Ville> listVille = new ArrayList<>();
 
         Ville ville = new Ville();
@@ -54,6 +53,8 @@ public class VilleDAOImpl implements VilleDAO{
                 ville.setNom(resultat.getString("Nom_commune"));
                 ville.setCodePostal(resultat.getString("Code_postal"));
                 ville.setLigne(resultat.getString("Ligne_5"));
+                ville.setLatitude(resultat.getDouble("Latitude"));
+                ville.setLongitude(resultat.getDouble("Longitude"));
                 villes.add(ville);
             }
 
@@ -93,6 +94,8 @@ public class VilleDAOImpl implements VilleDAO{
                 ville.setNom(resultat.getString("Nom_commune"));
                 ville.setCodePostal(resultat.getString("Code_postal"));
                 ville.setLigne(resultat.getString("Ligne_5"));
+                ville.setLatitude(resultat.getDouble("Latitude"));
+                ville.setLongitude(resultat.getDouble("Longitude"));
                 villes.add(ville);
             }
 
