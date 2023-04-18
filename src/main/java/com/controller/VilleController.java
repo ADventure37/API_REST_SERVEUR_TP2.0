@@ -42,6 +42,7 @@ public class VilleController {
                 }
                 return infos;
             } else if (nom != null) {
+                nom = nom.replace("_"," ");
                 ArrayList<Ville> villes = villeBLOService.getVillesNom(nom);
                 if (villes.size() == 0){
                     infos.add("Aucune ville ne possède ce nom");
@@ -78,10 +79,25 @@ public class VilleController {
                             ){
         Ville ville = new Ville();
         ville.setCodeCommune(codeCommune);
-        ville.setNom(nom);
+        ville.setNom(nom.replace("_"," "));
         ville.setCodePostal(codePostal);
         ville.setLatitude(parseDouble(latitude));
         ville.setLongitude(parseDouble(longitude));
         villeBLOService.putVille(ville);
+    }
+    @PostMapping(value="/ville")
+    public void addVille(@RequestParam (value="codeCommune") String codeCommune,
+                            @RequestParam (value="nom") String nom,
+                            @RequestParam (value="codePostal") String codePostal,
+                            @RequestParam (value="latitude") String latitude,
+                            @RequestParam (value="longitude") String longitude
+    ){
+        Ville ville = new Ville();
+        ville.setCodeCommune(codeCommune);
+        ville.setNom(nom.replace("_"," "));
+        ville.setCodePostal(codePostal);
+        ville.setLatitude(parseDouble(latitude));
+        ville.setLongitude(parseDouble(longitude));
+        villeBLOService.insertVille(ville);
     }
 }
